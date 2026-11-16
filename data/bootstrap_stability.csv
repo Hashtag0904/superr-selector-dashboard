@@ -1,0 +1,21 @@
+role,player_name,top10_replicates,mean_rank,median_rank,rank_p10,rank_p90,top10_probability
+batter,Namboori Tilak Varma,110,4.15,4,1,8,0.7333
+batter,Aiden Markram,106,4.87,5,2,8,0.7067
+batter,Ayush Badoni,98,4.39,4,1,8,0.6533
+batter,Riyan Parag,71,4.17,4,1,8,0.4733
+batter,Mark Chapman,66,3.98,3,1,7.5,0.4400
+batter,Ravindra Jadeja,64,5.88,5,3,10,0.4267
+batter,Marcus Stoinis,59,4.27,4,1,8.2,0.3933
+batter,David Miller,56,5.95,6,2,10,0.3733
+batter,Axar Patel,52,5.46,6,2,9.9,0.3467
+batter,Sikandar Raza,50,5.58,5,1.9,10,0.3333
+bowler,Eshan Malinga,109,3.33,2,1,8,0.7267
+bowler,Wanindu Hasaranga,96,5.16,5,1,10,0.6400
+bowler,Romario Shepherd,81,5.20,5,2,9,0.5400
+bowler,Khaleel Ahmed,80,3.59,3,1,8,0.5333
+bowler,Vaibhav Arora,78,3.92,3,1,8,0.5200
+bowler,Maheesh Theekshana,66,6.53,7,3,10,0.4400
+bowler,Sikandar Raza,65,5.83,6,2.4,9,0.4333
+bowler,Jofra Archer,59,5.56,6,1.8,9,0.3933
+bowler,Haris Rauf,56,5.55,5.5,2,9,0.3733
+bowler,Arshdeep Singh,46,6.37,7,3,10,0.3067
