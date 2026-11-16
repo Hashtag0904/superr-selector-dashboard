@@ -1,0 +1,5 @@
+scenario,deliveries,mean,median,p90,share_ge_75_pct
+Batting first,105727,47.3511,46.2017,78.3508,12.9607
+Bowling first,105727,52.6489,53.7983,81.7343,17.4667
+Batting second,95234,53.1554,52.7658,81.6702,17.8025
+Bowling second,95234,46.0883,45.2211,73.9385,8.9863
