@@ -1,0 +1,9 @@
+role,prior_strength,eligible_candidates,top10_names
+batter,3,42,Riyan Parag; Mark Chapman; Ayush Badoni; Marcus Stoinis; Namboori Tilak Varma; Aiden Markram; Ravindra Jadeja; Axar Patel; Daryl Mitchell; Jimmy Neesham
+batter,5,42,Riyan Parag; Mark Chapman; Ayush Badoni; Aiden Markram; Namboori Tilak Varma; Marcus Stoinis; Ravindra Jadeja; Axar Patel; Jimmy Neesham; Daryl Mitchell
+batter,8,42,Riyan Parag; Ayush Badoni; Mark Chapman; Aiden Markram; Namboori Tilak Varma; Marcus Stoinis; Ravindra Jadeja; Axar Patel; Jimmy Neesham; Sikandar Raza
+batter,10,42,Riyan Parag; Ayush Badoni; Mark Chapman; Aiden Markram; Namboori Tilak Varma; Marcus Stoinis; Ravindra Jadeja; Axar Patel; Jimmy Neesham; Sikandar Raza
+bowler,3,43,Eshan Malinga; Khaleel Ahmed; Vaibhav Arora; Ravichandran Ashwin; Sikandar Raza; Wanindu Hasaranga; Matheesha Pathirana; Haris Rauf; Jofra Archer; Romario Shepherd
+bowler,5,43,Khaleel Ahmed; Eshan Malinga; Vaibhav Arora; Ravichandran Ashwin; Sikandar Raza; Wanindu Hasaranga; Romario Shepherd; Haris Rauf; Jofra Archer; Maheesh Theekshana
+bowler,8,43,Khaleel Ahmed; Vaibhav Arora; Eshan Malinga; Ravichandran Ashwin; Romario Shepherd; Sikandar Raza; Haris Rauf; Maheesh Theekshana; Jofra Archer
+bowler,10,43,Khaleel Ahmed; Vaibhav Arora; Eshan Malinga; Ravichandran Ashwin; Romario Shepherd; Sikandar Raza; Haris Rauf; Maheesh Theekshana; Jofra Archer; Jofra Archer
