@@ -20,8 +20,13 @@ streamlit run app.py
 - **Overview:** dataset coverage, analytical workflow and pressure distribution.
 - **Player rankings:** searchable role-specific top-ten tables and rating charts.
 - **Player explorer:** final rating, absolute-pressure score, clutch index, scenario evidence and bootstrap stability.
+- **RR squad fit:** compares the pressure shortlist with Rajasthan Royals' retained squad, released-player gaps, overseas slots and role-specific auction options. Candidate registration status is clearly marked as pending until the final auction register is published.
 - **Pressure analysis:** first-/second-innings criteria, weights and pressure bands.
 - **Robustness & methodology:** weight sensitivity, eligibility-gate sensitivity, match-level bootstrap and limitations.
+
+## Auction context
+
+The RR squad-fit page uses the published IPL 2027 retention/release context. The six player names are drawn from the model's batter and bowler top tens. They are an auction-watch shortlist, not confirmed participants in the final registered auction pool. RR's reported squad position is 19 retained, six slots, three overseas slots and a reported purse of ₹27.05 crore. Recheck the auction register and any trades before acting on this analysis.
 
 ## Data included
 
