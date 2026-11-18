@@ -130,7 +130,6 @@ elif page == "RR squad fit":
     cols = st.columns(3, gap="medium")
     for col, (_, p) in zip(cols, bats.iterrows()):
         with col:
-            status = "REGISTRATION PENDING"
             st.markdown(f"""
 <div style="background:#fff;border:1px solid #e9dce5;border-top:5px solid #E62978;border-radius:14px;padding:14px;min-height:430px">
 <div style="font-size:11px;font-weight:800;color:#E62978;letter-spacing:.08em">FIT PRIORITY {int(p.fit_priority)} · PRESSURE RANK #{int(p.model_rank)}</div>
@@ -143,7 +142,7 @@ elif page == "RR squad fit":
 <div style="font-size:12px;color:#E62978;font-weight:800;margin-bottom:5px">{p.rr_role}</div>
 <div style="font-size:13px;color:#33394d;line-height:1.45">{p.why_it_helps}</div>
 <div style="font-size:12px;color:#6f7488;line-height:1.4;margin-top:9px"><b>Trade-off:</b> {p.tradeoff}</div>
-<div style="font-size:10px;color:#7b5266;font-weight:700;margin-top:10px">{status}</div>
+<div style="font-size:10px;color:#7b5266;font-weight:700;margin-top:10px">{p.availability}</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -165,7 +164,7 @@ elif page == "RR squad fit":
 <div style="font-size:12px;color:#E62978;font-weight:800;margin-bottom:5px">{p.rr_role}</div>
 <div style="font-size:13px;color:#33394d;line-height:1.45">{p.why_it_helps}</div>
 <div style="font-size:12px;color:#6f7488;line-height:1.4;margin-top:9px"><b>Trade-off:</b> {p.tradeoff}</div>
-<div style="font-size:10px;color:#7b5266;font-weight:700;margin-top:10px">AUCTION WATCH · REGISTRATION PENDING</div>
+<div style="font-size:10px;color:#7b5266;font-weight:700;margin-top:10px">{p.availability}</div>
 </div>
 """, unsafe_allow_html=True)
 
