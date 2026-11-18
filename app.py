@@ -53,7 +53,7 @@ def top_table(role):
 
 st.sidebar.markdown("# 🏏 SUPERR SELECTOR")
 st.sidebar.caption("SEASON 2 · ROUND 1")
-page = st.sidebar.radio("EXPLORE", ["Overview","Player rankings","Player explorer","Pressure analysis","Robustness & methodology"])
+page = st.sidebar.radio("EXPLORE", ["Overview","Player rankings","RR squad fit","Player explorer","Pressure analysis","Robustness & methodology"])
 st.sidebar.divider()
 st.sidebar.caption("IPL & T20I · 2022 onward")
 
@@ -91,6 +91,100 @@ elif page == "Player rankings":
     fig=px.bar(d.sort_values("rating_v21"),x="rating_v21",y="player_name",orientation="h",color="rating_v21",color_continuous_scale=["#F7C4D8",PINK],labels={"rating_v21":"Final rating","player_name":"Player"})
     fig.update_layout(coloraxis_showscale=False,height=430,margin=dict(l=10,r=10,t=15,b=10),plot_bgcolor="white",paper_bgcolor="white")
     st.plotly_chart(fig,use_container_width=True)
+
+
+elif page == "RR squad fit":
+    targets = csv("rr_auction_targets.csv")
+    st.markdown('<div class="section">Rajasthan Royals · auction squad-fit board</div>', unsafe_allow_html=True)
+    st.markdown("**What the pressure shortlist can add to the retained RR core**")
+    top = st.columns(4)
+    kpi(top[0], "Retained squad", "19", "Confirmed for IPL 2027")
+    kpi(top[1], "Open squad places", "6", "Maximum squad size: 25")
+    kpi(top[2], "Overseas places left", "3", "Five overseas retained")
+    kpi(top[3], "Reported purse", "₹27.05 Cr", "Before the mini-auction")
+    st.markdown(
+        '<div class="note"><b>Key constraint:</b> all six targets below are overseas players. RR can sign at most three overseas players in total from this watchlist, and fewer if it prioritises overseas options elsewhere. These are auction-watch candidates—not confirmed entries in the final registered auction pool.</div>',
+        unsafe_allow_html=True
+    )
+
+    need_left, need_right = st.columns(2, gap="large")
+    with need_left:
+        st.markdown("### Batting need")
+        st.markdown("""
+**Hetmyer’s release leaves the clearest role gap:** a left-handed middle-order / finishing option for the No. 5–7 band.
+- Existing core: Yashasvi Jaiswal, Vaibhav Sooryavanshi, Riyan Parag and Dhruv Jurel.
+- Lower-order options already retained include Ravindra Jadeja, Shubham Dubey, Donovan Ferreira and Dasun Shanaka.
+- The best addition should add a distinct late-innings skill, not simply another top-order batter.
+""")
+    with need_right:
+        st.markdown("### Bowling need")
+        st.markdown("""
+**RR already have an experienced pace base** after bringing in Mohammed Shami, alongside Jofra Archer, Nandre Burger and Sandeep Sharma.
+- Spin resources include Ravi Bishnoi, Ravindra Jadeja and Manimaran Siddharth.
+- The more interesting target is therefore a complementary spin type or an all-rounder who adds batting depth—not another bowler whose role duplicates an existing specialist.
+""")
+
+    st.markdown("### Batting targets")
+    st.caption("Auction-fit priority is a squad-building judgement. Pressure rank and score are kept separate from that judgement.")
+    bats = targets[targets.role.eq("Batter")].sort_values("fit_priority")
+    cols = st.columns(3, gap="medium")
+    for col, (_, p) in zip(cols, bats.iterrows()):
+        with col:
+            status = "REGISTRATION PENDING"
+            st.markdown(f"""
+<div style="background:#fff;border:1px solid #e9dce5;border-top:5px solid #E62978;border-radius:14px;padding:14px;min-height:430px">
+<div style="font-size:11px;font-weight:800;color:#E62978;letter-spacing:.08em">FIT PRIORITY {int(p.fit_priority)} · PRESSURE RANK #{int(p.model_rank)}</div>
+<h3 style="color:#171C3B;margin:6px 0 2px">{p.player}</h3>
+<div style="color:#6f7488;font-size:13px;font-weight:650">{p.style}</div>
+<div style="display:flex;gap:8px;margin:12px 0">
+ <div style="background:#FFF0F5;border-radius:8px;padding:9px;flex:1"><div style="font-size:10px;color:#6f7488">MODEL RATING</div><div style="font-size:22px;font-weight:850;color:#171C3B">{p.pressure_rating:.2f}</div></div>
+ <div style="background:#F1F3F8;border-radius:8px;padding:9px;flex:1"><div style="font-size:10px;color:#6f7488">BOOTSTRAP TOP-10</div><div style="font-size:22px;font-weight:850;color:#171C3B">{p.bootstrap_top10_frequency:.0f}%</div></div>
+</div>
+<div style="font-size:12px;color:#E62978;font-weight:800;margin-bottom:5px">{p.rr_role}</div>
+<div style="font-size:13px;color:#33394d;line-height:1.45">{p.why_it_helps}</div>
+<div style="font-size:12px;color:#6f7488;line-height:1.4;margin-top:9px"><b>Trade-off:</b> {p.tradeoff}</div>
+<div style="font-size:10px;color:#7b5266;font-weight:700;margin-top:10px">{status}</div>
+</div>
+""", unsafe_allow_html=True)
+
+    st.markdown("### Bowling targets")
+    st.caption("These are role alternatives. The shortlist is not a recommendation to buy all three.")
+    bowls = targets[targets.role.eq("Bowler")].sort_values("fit_priority")
+    cols = st.columns(3, gap="medium")
+    for col, (_, p) in zip(cols, bowls.iterrows()):
+        with col:
+            st.markdown(f"""
+<div style="background:#fff;border:1px solid #e9dce5;border-top:5px solid #171C3B;border-radius:14px;padding:14px;min-height:430px">
+<div style="font-size:11px;font-weight:800;color:#E62978;letter-spacing:.08em">FIT PRIORITY {int(p.fit_priority)} · PRESSURE RANK #{int(p.model_rank)}</div>
+<h3 style="color:#171C3B;margin:6px 0 2px">{p.player}</h3>
+<div style="color:#6f7488;font-size:13px;font-weight:650">{p.style}</div>
+<div style="display:flex;gap:8px;margin:12px 0">
+ <div style="background:#FFF0F5;border-radius:8px;padding:9px;flex:1"><div style="font-size:10px;color:#6f7488">MODEL RATING</div><div style="font-size:22px;font-weight:850;color:#171C3B">{p.pressure_rating:.2f}</div></div>
+ <div style="background:#F1F3F8;border-radius:8px;padding:9px;flex:1"><div style="font-size:10px;color:#6f7488">BOOTSTRAP TOP-10</div><div style="font-size:22px;font-weight:850;color:#171C3B">{p.bootstrap_top10_frequency:.0f}%</div></div>
+</div>
+<div style="font-size:12px;color:#E62978;font-weight:800;margin-bottom:5px">{p.rr_role}</div>
+<div style="font-size:13px;color:#33394d;line-height:1.45">{p.why_it_helps}</div>
+<div style="font-size:12px;color:#6f7488;line-height:1.4;margin-top:9px"><b>Trade-off:</b> {p.tradeoff}</div>
+<div style="font-size:10px;color:#7b5266;font-weight:700;margin-top:10px">AUCTION WATCH · REGISTRATION PENDING</div>
+</div>
+""", unsafe_allow_html=True)
+
+    st.markdown("### How to use the three overseas slots")
+    slot_a, slot_b, slot_c = st.columns(3)
+    kpi(slot_a, "Slot 1 · Priority", "Middle-order bat", "Neesham or Chapman: choose the finishing / left-hand profile")
+    kpi(slot_b, "Slot 2 · Priority", "Spin / all-round", "Raza for batting + off-spin; Theekshana for powerplay control")
+    kpi(slot_c, "Slot 3 · Flex", "Best value / cover", "Hasaranga only if RR want a second attacking wrist-spinner; otherwise reserve for another gap")
+    st.markdown(
+        '<div class="note"><b>Practical recommendation:</b> target one genuine middle-order solution first. Then choose between an all-round off-spinner (Raza) or a specialist powerplay off-spinner (Theekshana) based on price, role availability and the final auction register. Hasaranga is a high-quality option, but his leg-spin overlaps with Ravi Bishnoi.</div>',
+        unsafe_allow_html=True
+    )
+
+    with st.expander("Full shortlist and model evidence"):
+        show = targets.copy()
+        show["bootstrap_top10_frequency"] = show.bootstrap_top10_frequency.map(lambda x:f"{x:.1f}%")
+        st.dataframe(show[["role","fit_priority","player","model_rank","pressure_rating","absolute_pressure","clutch_index","bootstrap_top10_frequency","availability"]], use_container_width=True, hide_index=True)
+    st.caption("Auction status is provisional. Retention lists are published; the final registered player pool has not yet been issued. Registration was scheduled to close on 23 November, the final list is expected on 3 December, and the auction is scheduled for 16 December 2026.")
+    st.markdown("**Sources:** [RR official retention announcement](https://www.rajasthanroyals.com/latest-news/ipl-2027-rr-players-retention-list-retained-released) · [IPL retention announcement](https://www.iplt20.com/news/article/tata-ipl-2027-player-retentions-announced) · [Auction timeline](https://www.wisden.com/cricket-news/ipl-2027-retention-deadline-live-updates) · [Chapman profile](https://www.cricket.com.au/players/CA%3A985/mark-chapman) · [Neesham profile](https://www.aucklandcricket.co.nz/our-teams/aces-player-profiles/james-neesham) · [Mitchell profile](https://www.cricket.com.au/players/CA%3A2242/daryl-mitchell) · [Raza profile](https://www.icc-cricket.com/rankings/25422/sikandar-raza) · [Hasaranga profile](https://www.icc-cricket.com/rankings/65027/wanindu-hasaranga) · [Theekshana profile](https://www.icc-cricket.com/rankings/69274/maheesh-theekshana)")
 
 elif page == "Player explorer":
     st.markdown('<div class="section">Explore a shortlisted player</div>',unsafe_allow_html=True)
@@ -141,9 +235,9 @@ elif page == "Pressure analysis":
         fig.update_layout(showlegend=False,coloraxis_showscale=False,height=310,margin=dict(l=8,r=8,t=10,b=10),plot_bgcolor="white",paper_bgcolor="white")
         st.plotly_chart(fig,use_container_width=True)
     cs=st.columns(3)
-    kpi(cs[0],"High pressure","75–99","Included in high-pressure performance")
+    kpi(cs[0],"High pressure","≥75","Included in high-pressure performance")
     kpi(cs[1],"Intermediate","51–74","Excluded from clutch comparison")
-    kpi(cs[2],"Normal pressure","1–50","Comparison baseline for clutch")
+    kpi(cs[2],"Normal pressure","≤50","Comparison baseline for clutch")
     st.markdown("**Observed pressure distribution**")
     fig=px.bar(pressure,x="scenario",y="share_ge_75_pct",color="scenario",color_discrete_sequence=[PINK,NAVY,"#F28AB4",BLUE],text="share_ge_75_pct",labels={"scenario":"Scenario","share_ge_75_pct":"High-pressure deliveries (%)"})
     fig.update_traces(texttemplate="%{text:.1f}%",textposition="outside")
